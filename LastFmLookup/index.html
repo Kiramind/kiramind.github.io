@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>	
+        <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link href="css-ui/jquery-ui.css" rel="stylesheet">
+		<link href="style.css" rel="stylesheet">
+        <title>LastFM Lookup</title>
+    </head>
+    <body>
+		<div class="container-fluid">
+			<div class="row">
+				 <div class="jumbotron col-md-6 col-md-offset-3 formSection">
+					<h1>LastFM Lookup</h1>      
+					<p>Find What your LastFM friends listen to...</p>      
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3 formSection" style="background-color:lavender;">
+					<!-- Choix de l'utilisateur-->
+					<section id="userSection">
+						<h3>Choose LastFM user</h1>
+						<!-- <form role="form"> -->
+						  <div id="userInputCont" class="form-group">
+							<label for="userInput">User Name:</label>
+							<input id="userInput" class="form-control" oninput="ctrl.doUserExists();"/><!--type="search"-->
+							<span class="glyphicon form-control-feedback"></span>
+						  </div>
+						<!-- </form> -->
+					</section>
+				</div>
+				<div class="col-md-6 col-md-offset-3 formSection" style="background-color:lavenderblush;">	
+					<!-- Choix de l'artiste-->
+					<section id="artistSection">
+						<h3>Choose an artist</h1>
+						<fieldset disabled>
+							<div  class="form-group">						
+								<div id="artistInputCont">
+									<label for="artistInput">Artist Name:</label>
+									<input id="artistInput" class="form-control" oninput="ctrl.doArtistExist();"/>
+									<span class="glyphicon form-control-feedback"></span>
+								</div>
+								<button id="searchButton" type="button" class="btn btn-info disabled" onclick="ctrl.selectDefaultArtist();"><span class="glyphicon glyphicon-search"/> Search</button>
+							</div>
+						</fieldset>
+					</section>
+				</div>
+			</div><!-- fin row -->
+			<div id="searchRow" class="row">
+				<div class="col-md-6 col-md-offset-3 formSection" style="background-color:lightyellow;">
+					<!-- Résultats-->
+					<section id="searchResults" class="noDisplay">
+						<h1>Last 50 tracks :  </h1>
+						<div> <!-- style="max-height:500px;overflow:auto;" -->
+						<table id="resultsTable" class="noDisplay table table-striped table-bordered table-hover table-condensed" cellspacing="0">
+							<thead>
+								<tr>
+									<th style="width:35%">Title</th>
+									<th style="width:10%">Cover</th>
+									<th style="width:25%">Album</th>
+									<th style="width:20%">Date</th>
+								</tr>
+							</thead>
+							<tbody id="resultsTableBody"></tbody>
+						</table>
+						</div>
+						<h3 id="noResultsMessage" class="noDisplay">No results</h3>
+						<div id="waitingResults" class="noDisplay">
+							<img src="resources/wait_28x28.gif" alt="Wait_Icon" class="img-responsive" width="28" height="28">
+						</div>
+					</section>
+				</div>
+			</div><!-- fin row -->
+		</div><!-- fin container -->
+		
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="javascript/libLastFM/libLastFM.js"></script>
+		<script type="text/javascript" src="javascript/LFMLookupApp.js"></script>
+    </body>
+</html>

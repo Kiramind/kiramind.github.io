@@ -1,0 +1,23 @@
+
+#artistInput{
+	margin-bottom:5px;
+}
+
+.formSection{
+margin : 10px auto;
+ padding : 1px 10px;
+float: none;
+}
+
+.jumbotron{
+	margin-bottom : 0px;
+}
+
+td{
+	text-align: center;
+	vertical-align: center;
+}
+
+.noDisplay{
+	display : none;
+}
