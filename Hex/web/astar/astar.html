@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- <link rel="stylesheet" href="bootstrap.css"> -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <title>Ch2Ex2 Basic Paths</title>
+  <link rel="stylesheet" href="astar.css">
+    <!-- We don't include the modernizer because Dart only supports "The modern web" -->
+  </head>
+ 
+  <body>
+  <div class="container-fluid">
+    <canvas id="canvas" width="500" height="500">
+      Your browser does not support HTML 5 Canvas.
+    </canvas>
+	<div id="selectButtonsCont">
+		<input id="startButton" class="btn btn-default active" type="button" value="Start"/>
+		<input id="endButton" class="btn btn-default" type="button" value="End"/>
+		<input id="landButton" class="btn btn-info" type="button" value="Land"/>
+		<input id="forestButton" class="btn btn-success" type="button" value="Forest"/>
+		<input id="sandButton" class="btn btn-warning" type="button" value="Sand"/>
+		<input id="pathfindButton" class="btn btn-danger" type="button" value="PathFind"/>
+	</div>
+	<div>
+	  <textarea id="log" readonly="readonly" rows="10" cols="100"></textarea><br/>
+    <input id="clearButton" class="btn" type="button" value="Clear"/>
+	</div>
+  </div>
+  
+    <!-- 
+    Since dart VM usually runs after the page is initially rendered, we
+    keep our scripts just prior to the end of the body. This helps when
+    compiled to javascript for consistancy.
+     -->
+    <script type="application/dart" src="astar.dart"></script>
+    <!-- for this next line to work, your pubspec.yaml file must have a dependency on 'browser' -->
+    <script src="packages/browser/dart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+	  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

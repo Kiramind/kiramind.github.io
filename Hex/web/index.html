@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="bootstrap.css"> -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <title>HexPeriment</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="styles/main.css">
+    <!-- We don't include the modernizer because Dart only supports "The modern web" -->
+  </head>
+ 
+  <body>
+  <div id="main" class="container-fluid ">
+  <div class="jumbotron">
+    <h1>Hexperiment</h1> 
+    <p>Some experiments with Dart and Hexes...</p>
+  </div>
+    <fieldset class="section honeydew">
+      <legend><span class="info glyphicon glyphicon-info-sign"></span>Edit Map</legend>
+      <input id="landButton" class="btn btn-land" type="button" value="Land"/>
+      <input id="forestButton" class="btn btn-success" type="button" value="Forest"/>
+      <input id="sandButton" class="btn btn-warning" type="button" value="Sand"/>
+      <input id="hillButton" class="btn btn-hill" type="button" value="Hill"/>
+      <input id="mountainButton" class="btn btn-danger" type="button" value="Mountain"/>
+      <input id="coinButton" class="btn btn-coin" type="button" value="Coin"/>
+      <p class="infodesc hidden">
+        The red Path showed on the map is the best path found from the character to the treasure chest.<br/>
+        Moving from tile to tile has a cost and the notion of best path is determined by the total movement
+        cost. The map can have several types of tiles : <br/>
+          <span class="tab">* <strong>Land</strong> - Movement cost <strong>10</strong>.</span><br/>
+          <span class="tab">* <strong>Forest</strong> - Movement cost <strong>12</strong>.</span><br/>
+          <span class="tab">* <strong>Sand</strong> - Movement cost <strong>15</strong>.</span><br/>
+          <span class="tab">* <strong>Hill</strong> - Movement cost <strong>18</strong>.</span><br/>
+          <span class="tab">* <strong>Mountain</strong> - Movement cost <strong>26</strong>.</span><br/><br/>
+        Edit the map by selecting one of the button, then clicking on an hex on the map. You can see the minimum number
+        of steps the character has to take in order to reach the treasure.
+        
+      </p>    
+    </fieldset>
+    
+    <fieldset class="section lavender">
+    <legend><span class="info glyphicon glyphicon-info-sign"></span>Edit Character</legend>
+      <input id="playerButton" class="btn btn-default" type="button" value="Character"/>
+      <input id="chestButton" class="btn btn-default" type="button" value="Chest"/> 
+      <div class="btn-group inline-block">
+        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          Character Type <span class="caret"></span>
+        </button>
+        <ul id="characters" class="dropdown-menu" role="menu">
+        </ul> 
+      </div>
+      <p class="infodesc hidden">
+        The character and treasure positions can be changed by clicking on their 
+        respective button then selecting an hex on the map.<br/>
+        You can choose the type of character to use with the Character Type menu. You may have noted that
+        you can place coin on the map. Well, each character react differently to coins, assigning them a
+        different value. The Sage King, does not take coins into account (he is well above that) but other king may want to trade 
+        some movement cost for a coin, affecting the path they choose. Each king gives a value to a coin, that can be
+        represented by the movement cost they are ready to sacrifice for them : <br/>
+          <span class="tab">* <strong>Sage King</strong> - Coin value <strong>0</strong>.</span><br/>
+          <span class="tab">* <strong>War King</strong> - Coin value <strong>2</strong>.</span><br/>
+          <span class="tab">* <strong>Sly King</strong> - Coin value <strong>5</strong>.</span><br/>
+          <span class="tab">* <strong>Greed King</strong> - Coin value <strong>9</strong>.</span><br/>
+        Try placing coins on the map and see how the different kings reacts.
+      </p>
+    </fieldset>
+    <div id="canvaContainer"></div>
+    <fieldset class="section papayawhip">
+    <legend><span class="info glyphicon glyphicon-info-sign"></span>Manage Map</legend>
+      <div class="btn-group inline-block">
+        <button id="loadButton" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          Load Map <span class="caret"></span>
+        </button>
+        <ul id="savedMaps" class="dropdown-menu" role="menu">
+        </ul>
+      </div>
+      <input id="saveButton" class="btn btn-save" type="button" value="Save Map"/>
+      <label for="nameInput">Map Name :</label>
+      <input id="nameInput" type="text" value="Unamed Map"/>
+      <p class="infodesc hidden">
+        You can save map under the name you want by clicking the Save button. Maps can then be loaded until you quit
+        or refresh your this page.
+      </p>
+    </fieldset>
+    <fieldset id="visibilitySection" class="section lavenderblush">
+      <legend><span class="info glyphicon glyphicon-info-sign"></span>Visibility</legend>
+      <input id="fogButton" class="btn btn-info visiAlign" type="button" value="Fog inactive"/>
+        <div class="visiAlign visiComponent hidden">
+          <label for="viewRange">Range : </label>
+          <input id="viewRangeLabel" class="btn btn-default .disabled " type="button" value="2"/>
+        </div>
+        <div class ="visiAlign visiComponent hidden" style="width :50%;">
+          <input id="viewRange" list="viewsettings" type="range" value="2" min="1" max="6" step="1"/>
+          <datalist id=viewsettings>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+          </datalist>
+        </div>
+      <p class="infodesc hidden">
+        You can play with visibility by activating a <em>fog</em> that limits the vision of the character.
+        When the fog is present, the visibility of is computed with a line of sight algorithm from the surrounding hex of the map. Each type of
+        tile as a different height associated to it : <br/>
+          <span class="tab">* <strong>Land</strong> - Height <strong>0</strong>.</span><br/>
+          <span class="tab">* <strong>Forest</strong> - Height <strong>1</strong>.</span><br/>
+          <span class="tab">* <strong>Sand</strong> - Height <strong>0</strong>.</span><br/>
+          <span class="tab">* <strong>Hill</strong> - Height <strong>5</strong>.</span><br/>
+          <span class="tab">* <strong>Mountain</strong> - Height <strong>10</strong>.</span><br/><br/>
+          Consequently, when the character is on a mountain, it can see everything in its vision range. When
+          on a smaller ground (let's say, a forest), every higher element (like a hill) will still be visible but block its field of view.<br/>
+          Moreover, the visibility affects the path chosen, reducing the knowledge the character has of the map.
+      </p>
+    </fieldset>
+  </div>
+  
+    <!-- 
+    Since dart VM usually runs after the page is initially rendered, we
+    keep our scripts just prior to the end of the body. This helps when
+    compiled to javascript for consistancy.
+     -->
+    <script type="application/dart" src="main.dart"></script>
+    <!-- for this next line to work, your pubspec.yaml file must have a dependency on 'browser' -->
+    <script src="packages/browser/dart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+    
+  </body>
+</html>

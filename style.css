@@ -2,3 +2,9 @@
 .jumbotron{
 	margin-bottom : 0px;
 }
+
+.formSection{
+margin : 10px auto;
+ padding : 1px 10px;
+float: none;
+}

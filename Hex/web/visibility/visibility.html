@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" href="bootstrap.css"> -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <title>Visibility</title>
+  <link rel="stylesheet" href="visibility.css">
+    <!-- We don't include the modernizer because Dart only supports "The modern web" -->
+  </head>
+ 
+  <body>
+  <div class="container-fluid">
+	    <canvas id="canvas" width="500" height="500">
+	      Your browser does not support HTML 5 Canvas.
+	    </canvas>
+		<fieldset>
+		<legend>Map Manager</legend>  
+		  <div id="selectButtonsCont">
+		    <input id="landButton" class="btn btn-info active" type="button" value="Land"/>
+		    <input id="mountainButton" class="btn btn-danger" type="button" value="Mountain"/>
+		    <input id="hillButton" class="btn btn-warning" type="button" value="Hill"/><br/><br/>
+		    <label for="viewRange">Visibility Range : </label>
+		    <input id="viewRangeLabel" class="btn btn-default .disabled " type="button" value="3"/><br/><br/>
+		    <input id="viewRange" list="viewsettings" style="display : inline-block; width :300px;" type="range" value="3" min="1" max="6" step="1"/>
+		    <datalist id=viewsettings>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+				</datalist>
+		  </div>
+		</fieldset>
+		<fieldset>
+    <legend>Debug</legend>    
+				<div>
+				  <textarea id="log" readonly="readonly" rows="10" cols="100"></textarea><br/>
+				  <input id="clearButton" class="btn" type="button" value="Clear"/>
+				</div>
+		</fieldset>
+	</div>
+    <!-- 
+    Since dart VM usually runs after the page is initially rendered, we
+    keep our scripts just prior to the end of the body. This helps when
+    compiled to javascript for consistancy.
+     -->
+    <script type="application/dart" src="visibility.dart"></script>
+    <!-- for this next line to work, your pubspec.yaml file must have a dependency on 'browser' -->
+    <script src="packages/browser/dart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
