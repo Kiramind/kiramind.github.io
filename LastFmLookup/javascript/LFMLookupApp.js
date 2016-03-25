@@ -254,6 +254,8 @@ view.getArtistInput().autocomplete({
 	},
 	select: function (event, ui) {
 		//update artist existence (sometimes suggested artists do not even exists...)
+		view.getArtistInput().val(ui.item.value);
+		console.log("V2");//TODEL
 		ctrl.doArtistExist(
 				//when artist existence is computed, if ok, start looking for its tracks.
 				function(isArtistExists){
