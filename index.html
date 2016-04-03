@@ -20,11 +20,23 @@
 					<section>
 						<a href=./Hex/web/index.html><h3>Hex-Periment</h3></a>
 						<p>
-This is a funny experiment with Hexes. As a board game enthusiasts, I always appreciated how hexes give a new range of possibilities compared to squares.</br>
-This little program allowed me to implement mathematical computations in a Hex world among which : A-star pathfinding, line of sight algorithm. Moreover, it was an opportunity to try the Dart language for the first time.
-Please try playing modifying the maps, character and visibility in order to see the pathfinding in action.<br/>
-You can have a better understanding of the possibilities offered by this experiment, by clicking on the little "Info" buttons.
-
+This is a little project experimenting with hexes, pathfinding, line of sight and the Dart programming language.
+</p>
+<h3>Description</h3>
+<p>This projects is presented as a pseudo game displaying, on a hex map, the best path between a character and a treasure chest. This path is computed according to the ground type of each hex on the map. The map can be modified with several ground type (mountain, hill, sand...) associated with different value, updating the best path on the fly.
+<br/>
+Moreover, the game offers the possibility to display a realistic vision range of the character. For example, a character on top of a hill will see further than one circled by mountains. This vision is also taken into account to compute the best path.
+<br/>
+Finally, coins can be placed on the map, affecting the best path relatively to the value the character gives to it. Several type ofcharacter with different levels of greed are available to test this behavior.
+All these features are explained directly on the page when clicking on the "info" button.
+</p>
+<h3>Skills involved</h3>
+<p>
+First, this project made me work with interesting algorithms. An A-star algorithm for the pathfinding and a line of sight algorithm for the vision range.
+<br/>
+Moreover I had to apply these algorithms in the context of hexes. A lot of basic function like converting a clicked location to hex coordinate,  involved converting cartesian coordinates to hex coordinates. 
+<br/>
+Finally, it was an opportunity for me to work with the Dart programming language, wich is a nice a modern alternative to the typeless JavaScript.
 						</p>
 						<a href=./Hex/web/index.html>Give it a try !</a>
 					</section>
@@ -35,8 +47,11 @@ You can have a better understanding of the possibilities offered by this experim
 					<section>
 						<a href=./LastFmLookup/index.html><h3>LastFM Lookup</h3></a>
 						<p>
-This application is a little web app based on LastFM to find what music my friend listen to. If you don't know it, LastFM is a music website that offers to record all tracks listened on many devices and softwars. From this data it makes recommandation and it also provide an API to access your data and public data from all users.
-I use this website to retrieve the last 50 tracks listened by a LastFM user. Since we are often making eachother discover music with friends, we use this application to know if somebody has already listen to tracks from a given artist.
+This project is based on the LastFM API, and allows to find what are the last 50 tracks of an artist listened by a user. 
+<br/>
+For those who don't know it, LastFM is a service that allows to record all the music tracks listened on any device.
+<br/>
+We use this project with my friend because we make each other discover a new artist every Friday (we call it #listeningFriday) and it allows us to find what artist the others already know.
 						</p>
 						
 						<a href=./LastFmLookup/index.html>Give it a try !</a>
