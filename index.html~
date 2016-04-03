@@ -18,7 +18,7 @@
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3 formSection" style="background-color:lavender;">
 					<section>
-<img src="img/Hexperiment.png" class="img-rounded img-responsive " height="400" width="300" style="float:right"/>
+<img src="img/Hexperiment_2.png" class="img-rounded img-responsive " height="400" width="300" style="float:right"/>
 						<a href=./Hex/web/index.html><h3>Hex-Periment</h3></a>
 						<p>
 This is a little project experimenting with hexes, pathfinding, line of sight and the Dart programming language.
